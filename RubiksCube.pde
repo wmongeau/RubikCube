@@ -35,7 +35,7 @@ void setup(){
       }
     }
   }
- // cube[0][1][0].highlight();
+
 }
 
 void draw(){
@@ -54,10 +54,12 @@ public void rotate(char face,boolean clockwise){
     switch(face){
       case 'u':
       if(clockwise){
-        for(int i=0;i<7;i++){
-       //   cubie[][][]
+        Cubie[] u=new Face('b').getFace();
+        for(Cubie c:u){
+          //Need to rotate the cubie (change faces) Rotate
+          //Also need to rotate around the axis of the cube itself Swap
         }
-      }
+      }   
       else{
       }
       break;
