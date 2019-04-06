@@ -66,4 +66,55 @@ class Cubie {
     endShape();
     popMatrix();
   }
+  
+  void rotateColorZ(boolean clockwise){
+     if(clockwise){
+       int tmp=config.getValue(R);
+       config.setValue(R,config.getValue(B));
+       config.setValue(B,config.getValue(L));
+       config.setValue(L,config.getValue(F));
+       config.setValue(F,tmp);
+     }
+     else{
+       int tmp=config.getValue(R);
+       config.setValue(R,config.getValue(F));
+       config.setValue(F,config.getValue(L));
+       config.setValue(L,config.getValue(B));
+       config.setValue(B,tmp);
+     }  
+  }
+  
+  void rotateColorY(boolean clockwise){
+     if(clockwise){
+       int tmp=config.getValue(U);
+       config.setValue(U,config.getValue(F));
+       config.setValue(F,config.getValue(D));
+       config.setValue(D,config.getValue(B));
+       config.setValue(B,tmp);
+     }
+     else{
+       int tmp=config.getValue(U);
+       config.setValue(U,config.getValue(B));
+       config.setValue(B,config.getValue(D));
+       config.setValue(D,config.getValue(F));
+       config.setValue(F,tmp);
+     }  
+  }
+  
+  void rotateColorX(boolean clockwise){
+     if(clockwise){
+       int tmp=config.getValue(U);
+       config.setValue(U,config.getValue(L));
+       config.setValue(L,config.getValue(D));
+       config.setValue(D,config.getValue(R));
+       config.setValue(R,tmp);
+     }
+     else{
+       int tmp=config.getValue(U);
+       config.setValue(U,config.getValue(R));
+       config.setValue(R,config.getValue(D));
+       config.setValue(D,config.getValue(L));
+       config.setValue(L,tmp);
+     }  
+  }
 }

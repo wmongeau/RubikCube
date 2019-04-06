@@ -2,6 +2,8 @@ import peasy.*;
 
 PeasyCam cam;
 int dimension=3;
+final boolean CLOCKWISE=true;
+final boolean COUNTERCLOCKWISE=false;
 Cubie[][][] cube=new Cubie[dimension][dimension][dimension];
 
 //UP,DOWN,LEFT,RIGHT,FRONT,BACK
@@ -53,26 +55,87 @@ void draw(){
 public void rotate(char face,boolean clockwise){
     switch(face){
       case 'u':
-      if(clockwise){
-        Cubie[] u=new Face('b').getFace();
+        Cubie[] u=new Face('u').getFace();
         for(Cubie c:u){
-          //Need to rotate the cubie (change faces) Rotate
+          c.rotateColorZ(clockwise);
           //Also need to rotate around the axis of the cube itself Swap
         }
-      }   
-      else{
-      }
       break;
       case 'd':
+        Cubie[] d=new Face('d').getFace();
+        for(Cubie c:d){
+          c.rotateColorZ(clockwise);
+          //Also need to rotate around the axis of the cube itself Swap
+        }
       break;
       case 'l':
+       Cubie[] l=new Face('l').getFace();
+        for(Cubie c:l){
+          c.rotateColorY(clockwise);
+          //Also need to rotate around the axis of the cube itself Swap
+        }
       break;
       case 'r':
+       Cubie[] r=new Face('r').getFace();
+        for(Cubie c:r){
+          c.rotateColorY(clockwise);
+          //Also need to rotate around the axis of the cube itself Swap
+        }
       break;
       case 'f':
+       Cubie[] f=new Face('f').getFace();
+        for(Cubie c:f){
+          c.rotateColorX(clockwise);
+          //Also need to rotate around the axis of the cube itself Swap
+        }
       break;
       case 'b':
+       Cubie[] b=new Face('b').getFace();
+        for(Cubie c:b){
+          c.rotateColorX(clockwise);
+          //Also need to rotate around the axis of the cube itself Swap
+        }
       break;
     
     }
+}
+
+void keyPressed(){
+  switch(key){
+    case 'u':
+      rotate('u',true);
+    break;
+    case 'U':
+      rotate('u',false);
+    break;
+       case 'd':
+      rotate('d',false);
+    break;
+    case 'D':
+      rotate('d',true);
+    break;
+       case 'r':
+      rotate('r',false);
+    break;
+    case 'R':
+      rotate('r',true);
+    break;
+       case 'l':
+      rotate('l',true);
+    break;
+    case 'L':
+      rotate('l',false);
+    break;   case 'f':
+      rotate('f',false);
+    break;
+    case 'F':
+      rotate('f',true);
+    break;
+       case 'b':
+      rotate('b',true);
+    break;
+    case 'B':
+      rotate('b',false);
+    break;
+  }
 }
