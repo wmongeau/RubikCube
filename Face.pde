@@ -55,5 +55,17 @@ class Face{
   
   public Cubie[] getFace(){
     return face;
-}
+  }  
+
+  void rotateFaceX(){
+
+  }
+
+  void rotateFaceY(){
+
+  }
+
+  void rotateFaceZ(){
+
+  }
 }
