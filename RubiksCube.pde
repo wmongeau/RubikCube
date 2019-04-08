@@ -55,48 +55,53 @@ void draw(){
 public void rotate(char face,boolean clockwise){
     switch(face){
       case 'u':
-        Cubie[] u=new Face('u').getFace();
+        Face upper=new Face('u');
+        Cubie[] u=upper.getFace();
+        upper.rotateFace(clockwise);
         for(Cubie c:u){
           c.rotateColorZ(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
       case 'd':
-        Cubie[] d=new Face('d').getFace();
+        Face down = new Face('d');
+        Cubie[] d=down.getFace();
+        down.rotateFace(clockwise);
         for(Cubie c:d){
           c.rotateColorZ(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
       case 'l':
-       Cubie[] l=new Face('l').getFace();
+        Face left=new Face('l');
+        Cubie[] l=left.getFace();
+        left.rotateFace(clockwise);
         for(Cubie c:l){
           c.rotateColorY(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
       case 'r':
-       Cubie[] r=new Face('r').getFace();
-        for(Cubie c:r){
+       Face right=new Face('r');
+       Cubie[] r=right.getFace();
+       right.rotateFace(clockwise);
+       for(Cubie c:r){
           c.rotateColorY(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
       case 'f':
-       Cubie[] f=new Face('f').getFace();
+        Face front=new Face('f');
+        Cubie[] f=front.getFace();
+        front.rotateFace(clockwise);
         for(Cubie c:f){
           c.rotateColorX(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
       case 'b':
-       Cubie[] b=new Face('b').getFace();
+        Face back=new Face('b');
+        Cubie[] b=back.getFace();
+        back.rotateFace(clockwise);
         for(Cubie c:b){
           c.rotateColorX(clockwise);
-          //Also need to rotate around the axis of the cube itself Swap
         }
       break;
-    
     }
 }
 

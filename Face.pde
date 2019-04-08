@@ -57,15 +57,33 @@ class Face{
     return face;
   }  
 
-  void rotateFaceX(){
-
-  }
-
-  void rotateFaceY(){
-
-  }
-
-  void rotateFaceZ(){
-
+  void rotateFace(boolean clockwise){
+      Cubie temp=null;
+      if(clockwise){
+        for(int i=0;i<face.length;i++){
+          if(i==0){
+          temp=face[0];
+          }
+          if(i!=face.length-1){
+            face[i]=face[i+1];
+          }
+          else{
+            face[i]=temp;
+          }
+        }
+      }
+      else{
+        for(int i=face.length-1;i>=0;i--){
+         if(i==face.length-1){
+           temp=face[i];
+         }
+         if(i!=0){
+           face[i]=face[i-1];
+         }
+         else{
+           face[i]=temp;
+         }
+      }
+    }
   }
 }
