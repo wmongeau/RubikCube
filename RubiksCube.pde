@@ -1,4 +1,4 @@
-import peasy.*;
+import peasy.*; //<>// //<>//
 
 PeasyCam cam;
 int dimension=3;
@@ -15,14 +15,14 @@ final int F=4;
 final int B=5;
 
 color[] colors={
-  #FFFFFF,#FFFF00,
-  #FF0000,#FFA500,
-  #00FF00, #0000FF,
+  #FFFFFF, #FFFF00, 
+  #FF0000, #FFA500, 
+  #00FF00, #0000FF, 
   #000000
 };
 
 
-void setup(){
+void setup() {
   size(600, 600, P3D); 
   cam = new PeasyCam(this, 400);
   for (int i = 0; i < dimension; i++) {
@@ -37,110 +37,116 @@ void setup(){
       }
     }
   }
-
 }
 
-void draw(){
+void draw() {
   background(51);
-  for(int i=0;i<dimension;i++){
-    for(int j=0;j<dimension;j++){
-      for(int k=0;k<dimension;k++){
-        cube[i][j][k].show();  //<>//
+  for (int i=0; i<dimension; i++) {
+    for (int j=0; j<dimension; j++) {
+      for (int k=0; k<dimension; k++) {
+        cube[i][j][k].show();
       }
     }
-  }  
+  }
 }
 
 //UDLRFB
-public void rotate(char face,boolean clockwise){
-    switch(face){
-      case 'u':
-        Face upper=new Face('u');
-        Cubie[] u=upper.getFace();
-        upper.rotateFace(clockwise);
-        for(Cubie c:u){
-          c.rotateColorZ(clockwise);
-        }
-      break;
-      case 'd':
-        Face down = new Face('d');
-        Cubie[] d=down.getFace();
-        down.rotateFace(clockwise);
-        for(Cubie c:d){
-          c.rotateColorZ(clockwise);
-        }
-      break;
-      case 'l':
-        Face left=new Face('l');
-        Cubie[] l=left.getFace();
-        left.rotateFace(clockwise);
-        for(Cubie c:l){
-          c.rotateColorY(clockwise);
-        }
-      break;
-      case 'r':
-       Face right=new Face('r');
-       Cubie[] r=right.getFace();
-       right.rotateFace(clockwise);
-       for(Cubie c:r){
-          c.rotateColorY(clockwise);
-        }
-      break;
-      case 'f':
-        Face front=new Face('f');
-        Cubie[] f=front.getFace();
-        front.rotateFace(clockwise);
-        for(Cubie c:f){
-          c.rotateColorX(clockwise);
-        }
-      break;
-      case 'b':
-        Face back=new Face('b');
-        Cubie[] b=back.getFace();
-        back.rotateFace(clockwise);
-        for(Cubie c:b){
-          c.rotateColorX(clockwise);
-        }
-      break;
+public void rotate(char face, boolean clockwise) {
+  switch(face) {
+  case 'u':
+    Face upper=new Face('u');
+    Cubie[] u=upper.getFace();
+    for (Cubie c : u) {
+      c.rotateColorZ(clockwise);
     }
+    upper.rotateFace(clockwise);
+
+    break;
+  case 'd':
+    Face down = new Face('d');
+    Cubie[] d=down.getFace();
+    for (Cubie c : d) {
+      c.rotateColorZ(clockwise);
+    }
+    down.rotateFace(clockwise);
+
+    break;
+  case 'l':
+    Face left=new Face('l');
+    Cubie[] l=left.getFace();
+    for (Cubie c : l) {
+      c.rotateColorY(clockwise);
+    }
+    left.rotateFace(clockwise);
+
+    break;
+  case 'r':
+    Face right=new Face('r');
+    Cubie[] r=right.getFace();
+    for (Cubie c : r) {
+      c.rotateColorY(clockwise);
+    }
+    right.rotateFace(clockwise);
+
+    break;
+  case 'f':
+    Face front=new Face('f');
+    Cubie[] f=front.getFace();
+    for (Cubie c : f) {
+      c.rotateColorX(clockwise);
+    }
+    front.rotateFace(clockwise);
+
+    break;
+  case 'b':
+    Face back=new Face('b');
+    Cubie[] b=back.getFace();
+    for (Cubie c : b) {
+      c.rotateColorX(clockwise);
+    }
+    back.rotateFace(clockwise);
+
+    break;
+  }
 }
 
-void keyPressed(){
-  switch(key){
-    case 'u':
-      rotate('u',true);
+void keyPressed() {
+  switch(key) {
+  case 'u':
+    rotate('u', true);
     break;
-    case 'U':
-      rotate('u',false);
+  case 'U':
+    rotate('u', false);
     break;
-       case 'd':
-      rotate('d',false);
+  case 'd':
+    rotate('d', false);
     break;
-    case 'D':
-      rotate('d',true);
+  case 'D':
+    rotate('d', true);
     break;
-       case 'r':
-      rotate('r',false);
+  case 'r':
+    rotate('r', false);
     break;
-    case 'R':
-      rotate('r',true);
+  case 'R':
+    rotate('r', true);
     break;
-       case 'l':
-      rotate('l',true);
+  case 'l':
+    rotate('l', true);
     break;
-    case 'L':
-      rotate('l',false);
-    break;   case 'f':
-      rotate('f',false);
+  case 'L':
+    rotate('l', false);
+    break;   
+  case 'f':
+    rotate('f', false);
     break;
-    case 'F':
-      rotate('f',true);
+  case 'F':
+    rotate('f', true);
     break;
-       case 'b':
-      rotate('b',true);
+  case 'b':
+    rotate('b', true);
     break;
-    case 'B':
-      rotate('b',false);
+  case 'B':
+    rotate('b', false);
     break;
   }
 }

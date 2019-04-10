@@ -117,4 +117,14 @@ class Cubie {
        config.setValue(L,tmp);
      }  
   }
+  
+  public ColorConfig getConfig(){
+    return config;
+  }
+  
+  public void copyConfig(ColorConfig config){
+    for(int i=0;i<config.length();i++){
+      this.config.setValue(i,config.getValue(i));
+    }
+  }
 }
