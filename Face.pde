@@ -70,6 +70,7 @@ class Face{
   //for edges; 4=5,5=6,6=7,7=4
   
   //I think the problem is around the temp values
+  //Maybe try to not rotate cubies to pinpoint problem
   void rotateFace(boolean clockwise){
       ColorConfig tempCorner=null;
       ColorConfig tempEdge=null;
