@@ -75,42 +75,34 @@ class Face{
       ColorConfig tempCorner=null;
       ColorConfig tempEdge=null;
       if(clockwise){
-        for(int i=face.length-1;i>=0;i--){
-          if(i==3){
-            tempCorner=face[i].getConfig();
-          }
-          if(i==7){
-            tempEdge=face[i].getConfig();
-          }
-          if(i!=4&&i!=0){
-            face[i].copyConfig(face[i-1].getConfig());
-          }
-          else if(i==4){
-            face[i].copyConfig(tempEdge);
-          }
-          else if(i==0){
-            face[i].copyConfig(tempCorner);
-          }
-        }
+        println(face[0].getConfig());
+        println();
+        tempCorner=face[0].getConfig();
+        println(tempCorner);
+        println();
+        face[0].copyConfig(face[3].getConfig());
+        face[3].copyConfig(face[2].getConfig());
+        face[2].copyConfig(face[1].getConfig());
+        face[1].copyConfig(tempCorner);
+        tempEdge=face[4].getConfig();
+        face[4].copyConfig(face[7].getConfig());
+        face[7].copyConfig(face[6].getConfig());
+        face[6].copyConfig(face[5].getConfig());
+        face[5].copyConfig(tempEdge);
+        
       }
       else{
-        for(int i=0;i<face.length;i++){
-          if(i==0){
-            tempCorner=face[i].getConfig();
-          }
-          if(i==4){
-            tempEdge=face[i].getConfig();
-          }
-          if(i!=3&&i!=7){
-            face[i].copyConfig(face[i+1].getConfig());
-          }
-          else if(i==3){
-            face[i].copyConfig(tempCorner);
-          }
-          else if(i==7){
-            face[i].copyConfig(tempEdge);
-          }
+       
+        tempCorner=face[0].getConfig();
+        face[0].copyConfig(face[1].getConfig());
+        face[1].copyConfig(face[2].getConfig());
+        face[2].copyConfig(face[3].getConfig());
+        face[3].copyConfig(tempCorner);
+        tempEdge=face[4].getConfig();
+        face[4].copyConfig(face[5].getConfig());
+        face[5].copyConfig(face[6].getConfig());
+        face[6].copyConfig(face[7].getConfig());
+        face[7].copyConfig(tempEdge);
       }
     }
   }
-}

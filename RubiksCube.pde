@@ -13,7 +13,7 @@ final int L=2;
 final int R=3;
 final int F=4;
 final int B=5;
-
+//white,yellow,red,orange,green,blue
 color[] colors={
   #FFFFFF, #FFFF00, 
   #FF0000, #FFA500, 
@@ -37,6 +37,7 @@ void setup() {
       }
     }
   }
+  cube[0][0][0].highlight();
 }
 
 void draw() {
