@@ -4,8 +4,14 @@ PeasyCam cam;
 int dimension=3;
 final boolean CLOCKWISE=true;
 final boolean COUNTERCLOCKWISE=false;
-Cubie[][][] cube=new Cubie[dimension][dimension][dimension];
-
+Cubie[]cube=new Cubie[(int)pow(dimension,dimension)];
+Face upper;
+Face down;
+Face left;
+Face right;
+Face front;
+Face back;
+  
 //UP,DOWN,LEFT,RIGHT,FRONT,BACK
 final int U=0;
 final int D=1;
@@ -25,129 +31,102 @@ color[] colors={
 void setup() {
   size(600, 600, P3D); 
   cam = new PeasyCam(this, 400);
-  for (int i = 0; i < dimension; i++) {
-    for (int j = 0; j < dimension; j++) {
-      for (int k = 0; k < dimension; k++) {
-        float len = 50;
-        float offset = (dimension - 1)* len * 0.5;
-        float x = len * i - offset;
-        float y = len * j - offset;
-        float z = len * k - offset;
-        cube[i][j][k] = new Cubie(x, y, z, len);
+  int counter =0;
+  for (int x = -1; x <= 1; x++) {
+    for (int y = -1; y <=1 ; y++) {
+      for (int z = -1; z <=1; z++) {
+        PMatrix3D matrix=new PMatrix3D();
+        matrix.translate(x,y,z);
+        cube[counter] = new Cubie(matrix,x,y,z);
+        counter++;
       }
     }
   }
-  cube[0][0][0].highlight();
+  cube[0].highlight=true;
+  cube[2].highlight=true;
+   cube[18].highlight=true;
+  cube[24].highlight=true;
+}
+
+//try to make this generic
+void turnZ(int index){
+  for(int i=0;i<cube.length;i++){
+    if(cube[i].z==index){
+       PMatrix2D face=new PMatrix2D();
+       face.rotate(HALF_PI);
+       face.translate(cube[i].x,cube[i].y);
+       cube[i].update(round(face.m02),round(face.m12),round(cube[i].z));
+     }
+  }
+}
+void turnY(int index){
+  for(int i=0;i<cube.length;i++){
+    if(cube[i].y==index){
+       PMatrix2D face=new PMatrix2D();
+       face.rotate(HALF_PI);
+       face.translate(cube[i].x,cube[i].z);
+       cube[i].update(round(face.m02),round(cube[i].y),round(face.m12));
+     }
+  }
+}
+void turnX(int index){
+  for(int i=0;i<cube.length;i++){
+    if(cube[i].x==index){
+       PMatrix2D face=new PMatrix2D();
+       face.rotate(HALF_PI);
+       face.translate(cube[i].y,cube[i].z);
+       cube[i].update(cube[i].x,round(face.m02),round(face.m12));
+     }
+  }
 }
 
 void draw() {
   background(51);
-  for (int i=0; i<dimension; i++) {
-    for (int j=0; j<dimension; j++) {
-      for (int k=0; k<dimension; k++) {
-        cube[i][j][k].show();
-      }
-    }
-  }
+  scale(50);
+  for (int i=0; i<cube.length; i++) {
+        cube[i].show();
+   }
 }
 
-//UDLRFB
-public void rotate(char face, boolean clockwise) {
-  switch(face) {
-  case 'u':
-    Face upper=new Face('u');
-    Cubie[] u=upper.getFace();
-    for (Cubie c : u) {
-      c.rotateColorZ(clockwise);
-    }
-    upper.rotateFace(clockwise);
 
-    break;
-  case 'd':
-    Face down = new Face('d');
-    Cubie[] d=down.getFace();
-    for (Cubie c : d) {
-      c.rotateColorZ(clockwise);
-    }
-    down.rotateFace(clockwise);
-
-    break;
-  case 'l':
-    Face left=new Face('l');
-    Cubie[] l=left.getFace();
-    for (Cubie c : l) {
-      c.rotateColorY(clockwise);
-    }
-    left.rotateFace(clockwise);
-
-    break;
-  case 'r':
-    Face right=new Face('r');
-    Cubie[] r=right.getFace();
-    for (Cubie c : r) {
-      c.rotateColorY(clockwise);
-    }
-    right.rotateFace(clockwise);
-
-    break;
-  case 'f':
-    Face front=new Face('f');
-    Cubie[] f=front.getFace();
-    for (Cubie c : f) {
-      c.rotateColorX(clockwise);
-    }
-    front.rotateFace(clockwise);
-
-    break;
-  case 'b':
-    Face back=new Face('b');
-    Cubie[] b=back.getFace();
-    for (Cubie c : b) {
-      c.rotateColorX(clockwise);
-    }
-    back.rotateFace(clockwise);
-
-    break;
-  }
-}
 
 void keyPressed() {
   switch(key) {
   case 'u':
-    rotate('u', true);
+    turnY(-1);
     break;
   case 'U':
-    rotate('u', false);
+    
     break;
   case 'd':
-    rotate('d', false);
+    turnY(1);
     break;
   case 'D':
-    rotate('d', true);
+    
     break;
   case 'r':
-    rotate('r', false);
+    turnX(1);
     break;
   case 'R':
-    rotate('r', true);
+    
     break;
   case 'l':
-    rotate('l', true);
+    turnX(-1);
     break;
   case 'L':
-    rotate('l', false);
+    
     break;   
   case 'f':
-    rotate('f', false);
+    turnZ(1);
     break;
   case 'F':
-    rotate('f', true);
+    
     break;
   case 'b':
-    rotate('b', true);
+    turnZ(-1);
     break;
   case 'B':
-    rotate('b', false);
+    
     break;
   }
 }
