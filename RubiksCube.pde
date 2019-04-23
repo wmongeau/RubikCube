@@ -1,4 +1,4 @@
-import peasy.*; //<>// //<>//
+import peasy.*; //<>// //<>// //<>// //<>//
 
 PeasyCam cam;
 int dimension=3;
@@ -42,10 +42,6 @@ void setup() {
       }
     }
   }
-  cube[0].highlight=true;
-  cube[2].highlight=true;
-   cube[18].highlight=true;
-  cube[24].highlight=true;
 }
 
 //try to make this generic
