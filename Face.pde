@@ -6,6 +6,31 @@ class Face{
     this.c=c;
   }
   
+  public void turnZ(float angle){
+    
+      PVector v2=new PVector();
+      v2.x=round(normal.x*cos(angle)-normal.y*sin(angle));
+      v2.y=round(normal.x*sin(angle)+normal.y*cos(angle));
+      v2.z=round(normal.z);
+      normal=v2;
+  }
+  
+  public void turnY(float angle){
+     PVector v2=new PVector();
+      v2.x=round(normal.x*cos(angle)-normal.z*sin(angle));
+      v2.z=round(normal.x*sin(angle)+normal.z*cos(angle));
+      v2.y=round(normal.y);
+      normal=v2;
+  }
+  
+  public void turnX(float angle){
+     PVector v2=new PVector();
+      v2.y=round(normal.y*cos(angle)-normal.z*sin(angle));
+      v2.z=round(normal.y*sin(angle)+normal.z*cos(angle));
+      v2.x=round(normal.x);
+      normal=v2;
+  }
+  
   public void show(){
     pushMatrix();
     fill(c);

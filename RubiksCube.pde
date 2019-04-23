@@ -1,32 +1,9 @@
-import peasy.*; //<>// //<>// //<>// //<>//
+import peasy.*; //<>// //<>//
 
 PeasyCam cam;
 int dimension=3;
-final boolean CLOCKWISE=true;
-final boolean COUNTERCLOCKWISE=false;
-Cubie[]cube=new Cubie[(int)pow(dimension,dimension)];
-Face upper;
-Face down;
-Face left;
-Face right;
-Face front;
-Face back;
-  
-//UP,DOWN,LEFT,RIGHT,FRONT,BACK
-final int U=0;
-final int D=1;
-final int L=2;
-final int R=3;
-final int F=4;
-final int B=5;
-//white,yellow,red,orange,green,blue
-color[] colors={
-  #FFFFFF, #FFFF00, 
-  #FF0000, #FFA500, 
-  #00FF00, #0000FF, 
-  #000000
-};
 
+Cubie[]cube=new Cubie[(int)pow(dimension,dimension)];
 
 void setup() {
   size(600, 600, P3D); 
@@ -45,33 +22,36 @@ void setup() {
 }
 
 //try to make this generic
-void turnZ(int index){
+void turnZ(int index, int dir){
   for(int i=0;i<cube.length;i++){
     if(cube[i].z==index){
        PMatrix2D face=new PMatrix2D();
-       face.rotate(HALF_PI);
+       face.rotate(dir*HALF_PI);
        face.translate(cube[i].x,cube[i].y);
        cube[i].update(round(face.m02),round(face.m12),round(cube[i].z));
+       cube[i].turnFacesZ(dir);
      }
   }
 }
-void turnY(int index){
+void turnY(int index,int dir){
   for(int i=0;i<cube.length;i++){
     if(cube[i].y==index){
        PMatrix2D face=new PMatrix2D();
-       face.rotate(HALF_PI);
+       face.rotate(dir*HALF_PI);
        face.translate(cube[i].x,cube[i].z);
        cube[i].update(round(face.m02),round(cube[i].y),round(face.m12));
+        cube[i].turnFacesY(dir);
      }
   }
 }
-void turnX(int index){
+void turnX(int index,int dir){
   for(int i=0;i<cube.length;i++){
     if(cube[i].x==index){
        PMatrix2D face=new PMatrix2D();
-       face.rotate(HALF_PI);
+       face.rotate(dir*HALF_PI);
        face.translate(cube[i].y,cube[i].z);
        cube[i].update(cube[i].x,round(face.m02),round(face.m12));
+       cube[i].turnFacesX(dir);
      }
   }
 }
@@ -89,40 +69,40 @@ void draw() {
 void keyPressed() {
   switch(key) {
   case 'u':
-    turnY(-1);
+    turnY(-1,1);
     break;
   case 'U':
-    
+    turnY(-1,-1);
     break;
   case 'd':
-    turnY(1);
+    turnY(1,-1);
     break;
   case 'D':
-    
+    turnY(1,1);
     break;
   case 'r':
-    turnX(1);
+    turnX(1,1);
     break;
   case 'R':
-    
+    turnX(1,-1);
     break;
   case 'l':
-    turnX(-1);
+    turnX(-1,-1);
     break;
   case 'L':
-    
+      turnX(-1,1);
     break;   
   case 'f':
-    turnZ(1);
+    turnZ(1,1);
     break;
   case 'F':
-    
+    turnZ(1,-1);
     break;
   case 'b':
-    turnZ(-1);
+    turnZ(-1,-1);
     break;
   case 'B':
-    
+    turnZ(-1,1);
     break;
   }
 }

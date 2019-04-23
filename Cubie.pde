@@ -21,6 +21,22 @@ class Cubie {
     faces[5]=new Face(new PVector(-1,0,0),color(255,102,0));
   }
 
+  public void turnFacesZ(int dir){
+    for(Face f:faces){
+      f.turnZ(dir*HALF_PI);
+    }
+  }
+
+ public void turnFacesY(int dir){
+    for(Face f:faces){
+      f.turnY(dir*HALF_PI);
+    }
+  }
+   public void turnFacesX(int dir){
+    for(Face f:faces){
+      f.turnX(dir*HALF_PI);
+    }
+  }
   void show() {
     
     noFill();
