@@ -5,4 +5,4 @@ It is written in **Java** using *Processing* and implements matrix transformatio
 I hope to add these elements soon: 
 - Different dimensions for the cube (*4x4, 5x5, etc*)
 - A timer for solving that stops itself when the cube is solved
-- An ai that can solve the cube
+- An AI that can solve the cube
