@@ -4,6 +4,7 @@ PeasyCam cam;
 int dimension=3;
 
 Cubie[]cube=new Cubie[(int)pow(dimension,dimension)];
+char[] moves={'f','F','l','L','b','B','r','R','u','U','d','D'};
 
 void setup() {
   size(600, 600, P3D); 
@@ -66,7 +67,7 @@ void draw() {
 
 
 
-void keyPressed() {
+void executeMove(char key) {
   switch(key) {
   case 'u':
     turnY(-1,1);
@@ -104,5 +105,56 @@ void keyPressed() {
   case 'B':
     turnZ(-1,1);
     break;
+   
   }
+}
+void keyPressed(){
+  switch(key) {
+  case 'u':
+    executeMove('u');
+    break;
+  case 'U':
+    executeMove('U');
+    break;
+  case 'd':
+     executeMove('d');
+    break;
+  case 'D':
+     executeMove('D');
+    break;
+  case 'r':
+     executeMove('r');
+    break;
+  case 'R':
+     executeMove('R');
+    break;
+  case 'l':
+     executeMove('l');
+    break;
+  case 'L':
+      executeMove('L');
+    break;   
+  case 'f':
+     executeMove('f');
+    break;
+  case 'F':
+     executeMove('F');
+    break;
+  case 'b':
+     executeMove('b');
+    break;
+  case 'B':
+     executeMove('B');
+    break;
+   case 's':
+     shuffle();
+     break;
+  }
+}
+void shuffle(){
+  int nbMoves=10;
+  for(int i=0;i<=nbMoves;i++){
+    executeMove(moves[(int)random(moves.length)]);
+  }
+  
 }
